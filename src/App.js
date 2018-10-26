@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Search from './Search';
 
 class App extends Component {
   constructor() {
@@ -8,7 +8,11 @@ class App extends Component {
     this.state = {};
   }
   render() {
-    return <div className="App">Hello</div>;
+    return (
+      <div className="App">
+        <Search />
+      </div>
+    );
   }
 }
 
