@@ -12,22 +12,23 @@ class App extends Component {
     this.state = {
       currentLocation: '',
       weatherData: {},
-      error: false,
-      loading: false
+      error: false
     };
 
     this.api = new Api();
   }
 
   getLocationData = async location => {
-    const currentData = await this.api.getCurrent(location);
-    const forecastData = await this.api.getForecast(currentData.id);
-    console.log(currentData, forecastData);
+    this.setState({ error: false });
+    const weatherData = await this.api.getCurrent(location);
 
-    const weatherData = { ...currentData, forecast: forecastData };
+    if (weatherData === 'error') {
+      this.setState({ error: true });
+      return null;
+    }
 
     this.setState({
-      currentLocation: currentData.name,
+      currentLocation: weatherData.name,
       weatherData
     });
   };
