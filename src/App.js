@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import './App.css';
 import Search from './Search';
 import { Api } from './Api';
+import { Current } from './Current';
+import { ForecastContainer } from './ForecastContainer';
+import { Error } from './Error';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       currentLocation: '',
-      weatherData: [],
+      weatherData: {},
       error: false,
       loading: false
     };
@@ -18,7 +21,11 @@ class App extends Component {
 
   getLocationData = async location => {
     const currentData = await this.api.getCurrent(location);
-    const weatherData = [...this.state.weatherData, currentData];
+    const forecastData = await this.api.getForecast(currentData.id);
+    console.log(currentData, forecastData);
+
+    const weatherData = { ...currentData, forecast: forecastData };
+
     this.setState({
       currentLocation: currentData.name,
       weatherData
@@ -26,10 +33,24 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
+    const { currentLocation, weatherData, error } = this.state;
     return (
       <div className="App">
         <Search getLocationData={this.getLocationData} />
+        {error && <Error />}
+        {!error && (
+          <div>
+            {currentLocation === '' && (
+              <h1>Hello! Enter a location to view the weather</h1>
+            )}
+            {currentLocation !== '' && (
+              <section>
+                <Current weatherData={weatherData} />
+                <ForecastContainer weatherData={weatherData.forecast} />
+              </section>
+            )}
+          </div>
+        )}
       </div>
     );
   }

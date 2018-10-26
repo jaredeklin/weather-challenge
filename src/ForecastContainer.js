@@ -3,8 +3,13 @@ import { Day } from './Day';
 
 export const ForecastContainer = ({ weatherData }) => {
   const day = weatherData.map(day => {
-    return <Day weatherData={day} />;
+    return <Day weatherData={day} key={day.dt_txt} />;
   });
 
-  return <section>{day}</section>;
+  return (
+    <section className="forecast-container">
+      <h4>Extended Forecast:</h4>
+      {day}
+    </section>
+  );
 };

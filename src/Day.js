@@ -1,14 +1,17 @@
 import React from 'react';
+const moment = require('moment');
 
 export const Day = ({ weatherData }) => {
-  const { temp, icon, descrtiption } = weatherData;
-  const imgUrl = `http://openweathermap.org/img/w/${icon}.png`;
+  const { main, weather, dt_txt } = weatherData;
+  const imgUrl = `http://openweathermap.org/img/w/${weather[0].icon}.png`;
+  const date = moment(dt_txt).format('ddd');
 
   return (
-    <artice className="forecast-day">
-      <h5>{temp}</h5>
+    <article className="forecast-day">
+      <h4>{date}</h4>
+      <h5>{main.temp.toFixed()}</h5>
       <img src={imgUrl} alt="icon" />
-      <p>{descrtiption}</p>
-    </artice>
+      <p>{weather[0].main}</p>
+    </article>
   );
 };
