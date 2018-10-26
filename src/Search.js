@@ -10,7 +10,10 @@ class Search extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state.location);
+    this.props.getLocationData(this.state.location);
+    this.setState({
+      location: ''
+    });
   };
 
   handleChange = event => {
