@@ -1,20 +1,43 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: lightblue;
 }
 
 input {
+  box-sizing: border-box;
   width: 200px;
   height: 30px;
   font-size: 16px;
-  border: 1px solid black;
+}
+
+button {
+  height: 30px;
+  margin-left: 5px;
+  position: relative;
+  top: -2px;
 }
 
 .App {
   margin: 50px;
 }
 
+.current-section {
+  margin: 100px 0;
+  display: flex;
+}
+
+.current-name {
+  width: 300px;
+}
+
+.current-info {
+  width: 300px;
+  text-align: center;
+}
+
 .forecast-day {
   display: inline-block;
   width: 100px;
+  text-align: center;
 }

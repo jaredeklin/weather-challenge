@@ -32,9 +32,9 @@ class Search extends Component {
           name="location"
           placeholder="Enter location"
           onChange={this.handleChange}
-          onBlur={this.handleSubmit}
           value={this.state.location}
         />
+        <button>Submit Location</button>
       </form>
     );
   }
