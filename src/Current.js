@@ -1,8 +1,7 @@
 import React from 'react';
 
 export const Current = ({ weatherData }) => {
-  const { name, temp, description, icon, date } = weatherData;
-  const imgUrl = `http://openweathermap.org/img/w/${icon}.png`;
+  const { name, temp, description, imgUrl, date } = weatherData;
 
   return (
     <section className="current-section">

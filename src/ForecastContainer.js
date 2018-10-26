@@ -3,7 +3,7 @@ import { Day } from './Day';
 
 export const ForecastContainer = ({ weatherData }) => {
   const day = weatherData.map(day => {
-    return <Day weatherData={day} key={day.dt_txt} />;
+    return <Day weatherData={day} key={day.dt_txt + Date.now()} />;
   });
 
   return (

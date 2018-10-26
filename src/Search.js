@@ -34,7 +34,9 @@ class Search extends Component {
           onChange={this.handleChange}
           value={this.state.location}
         />
-        <button>Submit Location</button>
+        <button disabled={this.state.location === '' ? true : false}>
+          Submit Location
+        </button>
       </form>
     );
   }
