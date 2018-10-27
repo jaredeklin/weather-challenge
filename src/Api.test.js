@@ -41,7 +41,7 @@ describe('Api', () => {
         })
       );
 
-      expect(await api.getForecast()).toEqual('error');
+      expect(await api.getForecast()).toEqual(null);
     });
   });
 
@@ -57,9 +57,9 @@ describe('Api', () => {
 
     it('should call fetch with correct params', () => {
       const expected = `http://api.openweathermap.org/data/2.5/weather?q=Denver,us&type=like&appid=${apiKey}&units=imperial`;
+      api.getForecast = jest.fn();
 
       api.getCurrent('Denver');
-
       expect(window.fetch).toHaveBeenCalledWith(expected);
     });
 
@@ -76,7 +76,7 @@ describe('Api', () => {
         })
       );
 
-      expect(await api.getCurrent()).toEqual('error');
+      expect(await api.getCurrent()).toEqual(null);
     });
   });
 });
