@@ -22,7 +22,7 @@ class App extends Component {
     this.setState({ error: false });
     const weatherData = await this.api.getCurrent(location);
 
-    if (weatherData === 'error') {
+    if (!weatherData) {
       this.setState({ error: true });
       return null;
     }
