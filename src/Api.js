@@ -45,7 +45,6 @@ export class Api {
     const fiveDay = forecastData.list.filter(day =>
       day.dt_txt.includes('18:00')
     );
-
     const cleanForecast = fiveDay.reduce((forecastArray, day) => {
       const { main, weather, dt_txt } = day;
       const date = moment(dt_txt).format('ddd');
@@ -60,7 +59,6 @@ export class Api {
       return [...forecastArray, forecast];
     }, []);
 
-    console.log(cleanForecast);
     return cleanForecast;
   };
 }
