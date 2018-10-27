@@ -33,6 +33,16 @@ describe('Api', () => {
     it('should return the correct value', async () => {
       expect(await api.getForecast(5419388)).toEqual(mockExpectedForecastData);
     });
+
+    it('should return error if response not ok', async () => {
+      window.fetch = jest.fn(() =>
+        Promise.resolve({
+          ok: false
+        })
+      );
+
+      expect(await api.getForecast()).toEqual('error');
+    });
   });
 
   describe('getCurrent method', () => {
@@ -57,6 +67,16 @@ describe('Api', () => {
       api.getForecast = jest.fn().mockReturnValue(mockExpectedForecastData);
 
       expect(await api.getCurrent('Denver')).toEqual(mockExpectedCurrentData);
+    });
+
+    it('should return error if response not ok', async () => {
+      window.fetch = jest.fn(() =>
+        Promise.resolve({
+          ok: false
+        })
+      );
+
+      expect(await api.getCurrent()).toEqual('error');
     });
   });
 });
